@@ -39,25 +39,24 @@
             cursor: pointer;
         }
 
-        #intro {
+        #intro-container {
             position: relative;
-            top: 150px; /* Create space between the header and the intro text */
+            top: 150px; /* Space between the header and the intro text */
+            text-align: center;
+            z-index: 2;
+        }
+
+        #intro {
             color: white;
             font-size: 40px;
-            z-index: 2;
             opacity: 0;
-            white-space: nowrap;
-            text-align: center;
         }
 
         #subtext {
-            position: relative;
-            top: 20px; /* Adjust position so it appears directly below the intro text */
-            font-size: 30px;
             color: white;
-            z-index: 2;
+            font-size: 30px;
             opacity: 0;
-            text-align: center;
+            margin-top: 10px; /* Directly beneath the intro */
         }
 
         #content-container {
@@ -92,9 +91,11 @@
         <a href="#about">About Me</a>
     </header>
 
-    <!-- Intro and Subtext -->
-    <div id="intro">Hi, I am Hanson Liu.</div>
-    <div id="subtext">a CS/pmath student at the University of Waterloo</div>
+    <!-- Intro and Subtext Container -->
+    <div id="intro-container">
+        <div id="intro">Hi, I am Hanson Liu.</div>
+        <div id="subtext">a CS/pmath student at the University of Waterloo</div>
+    </div>
 
     <!-- Container for all sections -->
     <div id="content-container">
