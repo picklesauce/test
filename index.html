@@ -39,7 +39,7 @@
             cursor: pointer;
         }
 
-        #intro, #subtext {
+        #intro {
             position: relative;
             top: 150px; /* Create space between the header and the intro text */
             color: white;
@@ -51,9 +51,13 @@
         }
 
         #subtext {
-            top: 20px; /* Adjust position slightly below the intro text */
+            position: relative;
+            top: 10px; /* Adjust position to directly below the intro text */
             font-size: 30px;
+            color: white;
+            z-index: 2;
             opacity: 0;
+            text-align: center;
         }
 
         #content-container {
@@ -67,7 +71,7 @@
             color: black;
             font-size: 30px;
             text-align: center;
-            background-color: gray;
+            background-color: rgba(0, 0, 0, 0.2); /* Black with opacity */
             z-index: 2;
             position: relative;
         }
