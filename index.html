@@ -15,7 +15,7 @@
 
         canvas {
             display: block;
-            position: absolute;
+            position: fixed; /* Keep the canvas fixed to the viewport */
             top: 0;
             left: 0;
             z-index: 1;
@@ -40,34 +40,34 @@
         }
 
         #intro, #subtext {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
+            top: 150px; /* Adjusted to create space between the header and intro */
             color: white;
             font-size: 40px;
             z-index: 2;
             opacity: 0;
             white-space: nowrap;
+            text-align: center;
         }
 
         #subtext {
-            top: 50%; /* Slightly below the intro text */
+            top: 180px; /* Slightly below the intro text */
             font-size: 30px;
             opacity: 0;
         }
 
         section {
             padding: 150px 20px;
-            color: white;
+            color: black;
             font-size: 30px;
             text-align: center;
+            background-color: gray;
+            z-index: 2;
+            position: relative;
         }
 
         #projects, #contact, #about {
-            height: 600px;
-            background-color: #222;
-            z-index: 2;
+            min-height: 600px;
         }
     </style>
 </head>
@@ -96,8 +96,14 @@
         const canvas = document.getElementById('gameOfLife');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.body.scrollHeight; // Cover the full page height
+        }
+
+        resizeCanvas();
+
+        window.addEventListener('resize', resizeCanvas);
 
         const cols = Math.floor(canvas.width / 10);
         const rows = Math.floor(canvas.height / 10);
