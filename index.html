@@ -15,10 +15,10 @@
 
         canvas {
             display: block;
-            position: fixed; /* Keep the canvas fixed to the viewport */
+            position: fixed; /* Make the canvas fixed to stay in the background */
             top: 0;
             left: 0;
-            z-index: 1;
+            z-index: 1; /* Ensure it stays behind other content */
         }
 
         header {
@@ -41,7 +41,7 @@
 
         #intro, #subtext {
             position: relative;
-            top: 150px; /* Adjusted to create space between the header and intro */
+            top: 150px; /* Create space between the header and the intro text */
             color: white;
             font-size: 40px;
             z-index: 2;
@@ -51,9 +51,15 @@
         }
 
         #subtext {
-            top: 180px; /* Slightly below the intro text */
+            top: 20px; /* Adjust position slightly below the intro text */
             font-size: 30px;
             opacity: 0;
+        }
+
+        #content-container {
+            position: relative;
+            z-index: 2; /* Ensure it appears above the canvas */
+            padding-top: 300px; /* Space for the intro text */
         }
 
         section {
@@ -86,10 +92,13 @@
     <div id="intro">Hi, I am Hanson Liu.</div>
     <div id="subtext">a CS/pmath student at the University of Waterloo</div>
 
-    <!-- Sections -->
-    <section id="projects">testing</section>
-    <section id="contact">testing</section>
-    <section id="about">testing</section>
+    <!-- Container for all sections -->
+    <div id="content-container">
+        <!-- Sections -->
+        <section id="projects">testing</section>
+        <section id="contact">testing</section>
+        <section id="about">testing</section>
+    </div>
 
     <script>
         // Game of Life Setup
@@ -98,7 +107,7 @@
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = document.body.scrollHeight; // Cover the full page height
+            canvas.height = window.innerHeight; // Make the canvas cover the viewport height
         }
 
         resizeCanvas();
