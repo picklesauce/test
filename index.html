@@ -20,7 +20,7 @@
             z-index: 1;
         }
 
-        #intro {
+        #intro, #subtext {
             position: absolute;
             top: 40%;
             left: 50%;
@@ -30,6 +30,13 @@
             font-family: 'Arial', sans-serif;
             z-index: 2;
             opacity: 0;
+            white-space: nowrap;
+        }
+
+        #subtext {
+            top: 50%; /* Slightly below the intro text */
+            font-size: 30px;
+            opacity: 0;
         }
     </style>
 </head>
@@ -37,6 +44,7 @@
 
     <canvas id="gameOfLife"></canvas>
     <div id="intro">Hi, I am Hanson Liu.</div>
+    <div id="subtext">a CS/pmath student at the University of Waterloo</div>
 
     <script>
         // Game of Life Setup
@@ -113,23 +121,29 @@
 
         // Intro text animation
         const intro = document.getElementById('intro');
-        let opacity = 0;
-        intro.style.opacity = 1;
+        const subtext = document.getElementById('subtext');
 
-        function typeWriter(text, i, callback) {
+        function typeWriter(element, text, i, callback) {
             if (i < text.length) {
-                intro.innerHTML = text.substring(0, i + 1);
-                setTimeout(() => typeWriter(text, i + 1, callback), 100); // 2 seconds for the full text
+                element.innerHTML = text.substring(0, i + 1);
+                setTimeout(() => typeWriter(element, text, i + 1, callback), 100); // 2 seconds for the full text
             } else if (callback) {
                 callback();
             }
         }
 
-        // Start the typing effect
+        // Show intro text and start typing
         setTimeout(() => {
             intro.style.opacity = 1;
-            typeWriter('Hi, I am Hanson Liu.', 0);
-        }, 1000); // Start typing after 1 second
+            typeWriter(intro, 'Hi, I am Hanson Liu.', 0, () => {
+                // After the intro is fully typed, wait for 5 seconds and show the subtext
+                setTimeout(() => {
+                    subtext.style.opacity = 1;
+                    typeWriter(subtext, 'a CS/pmath student at the University of Waterloo', 0);
+                }, 5000);
+            });
+        }, 1000); // Start typing the intro text after 1 second
+
     </script>
 
 </body>
